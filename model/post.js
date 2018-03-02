@@ -72,4 +72,4 @@ class Post {
   }
 }
 
-module.exports = User;
+module.exports = Post;

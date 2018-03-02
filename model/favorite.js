@@ -65,6 +65,23 @@ class Favorite {
       callback('Cannot save user without post.', null);
     }
   }
+
+  remove(callback) {
+    if (typeof this.id !== 'undefined') {
+      // console.log('Id: ', this.id);
+      Sql.query('DELETE FROM favorites WHERE id=?;', [this.id], function(error, results, fields) {
+        if (error) {
+          console.error(error);
+          callback('Failed to find fav.', false);
+        } else {
+          callback(null, true);
+        }
+      });
+    } else {
+      console.log('Missing id for fav.');
+      callback('Missing id for fav.', false);
+    }
+  }
 }
 
-module.exports = User;
+module.exports = Favorite;
