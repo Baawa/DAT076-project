@@ -1,14 +1,14 @@
-const User = require('./model/user');
+const User = require('../model/user');
 const path = require('path');
 const jwt = require('jsonwebtoken');
-const config = require('./dbconfig');
-const Sql = require('./DATSQL/DATSql');
+const config = require('../dbconfig');
+const Sql = require('../DATSQL/DATSql');
 
 var register = (req, res, next) => {
   var user = new User(req.body);
   user.banned = false;
 
-  if (user.password !== 'undefined') {
+  if (typeof user.password !== 'undefined' && typeof user.name != 'undefined') {
     user.save(function(error, user_id) {
       if (error) {
         res.status(400).send({'error':'Could not create user.'});

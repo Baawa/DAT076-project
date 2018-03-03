@@ -1,7 +1,7 @@
 'use strict';
 
 // Import
-const Sql = require('./DATSQL/DATSql');
+const Sql = require('../DATSQL/DATSql');
 const Pasteurize = require('pasteurize').Pasteurize;
 
 // Definition
@@ -55,7 +55,7 @@ class User {
 
   authenticate(callback) {
     var pw = this.password;
-    Sql.query('SELECT id, name, password, banned, image FROM users WHERE email = ?;', [this.email],
+    Sql.query('SELECT id, name, password, banned, image FROM users WHERE name = ?;', [this.name],
     function(error, results, fields) {
       if (error) {
         console.error(error);
@@ -76,7 +76,7 @@ class User {
           } else if (isValid) {
             if (!banned) {
               // console.log('User is active.');
-              callback(null, {id:user_id, name:fullname, email:email, is_vessel:is_vessel});
+              callback(null, {id:user_id, name:name, image:image, banned:banned, admin:admin});
             } else {
               console.log('User is banned.');
               callback('User is banned.', null);
@@ -94,6 +94,7 @@ class User {
   }
 
   save(callback) {
+    console.log(this);
     if (this.name.length > 0) {
 
       if (typeof this.banned === 'undefined') {

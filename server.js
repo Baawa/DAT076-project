@@ -8,6 +8,7 @@ const path = require('path');
 const Table = require('./tablesetup');
 const Auth = require('./server_auth');
 const Webclient = require('./webclient');
+const Users = require('./service/userManager');
 
 
 // Setup
@@ -36,10 +37,12 @@ app.get('/', Auth, Webclient.getContainerView); // TODOs.getProducts);
 app.get('/login', Webclient.getLoginView);
 app.get('/register', Webclient.getRegisterView);
 
-app.get('/setup/',
-				Table.deleteTables,
-				Table.createTables,
-				standardResponse);
+//Post-requests
+app.post('/login', Users.login, Webclient.postLogin);
+app.post('/register', Users.register, standardResponse);
+
+//tablesetup
+app.get('/setup/', Table.deleteTables, Table.createTables, standardResponse);
 
 // Route not found - default to '/'
 app.get('*', Auth, function(req, res, next) {
