@@ -12,7 +12,7 @@ const createTables = (req, res, next) => {
 
   // Users table
   table.addColumn(new Column('id', Column.Type.ID, null));
-  table.addColumn(new Column('name', null, Column.Property.NOT_NULL));
+  table.addColumn(new Column('name', null, Column.Property.UNIQUE));
   table.addColumn(new Column('password', Column.Type.VARCHAR_511, Column.Property.NOT_NULL));
   table.addColumn(new Column('banned', Column.Type.BOOL, Column.Property.NOT_NULL));
   table.addColumn(new Column('admin', Column.Type.BOOL, Column.Property.NOT_NULL));

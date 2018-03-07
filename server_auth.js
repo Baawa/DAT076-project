@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 // Check token and set user
 module.exports = function(req, res, next) {
 	// console.log('Base url: ', req.baseUrl);
-	var token = req.cookies['x-access-token'] || req.headers['x-access-token'];
-	if (typeof req.headers['x-access-token'] !== 'undefined' ||
+	var token = req.cookies['x_access_token'] || req.headers['x_access_token'];
+	if (typeof req.headers['x_access_token'] !== 'undefined' ||
 			typeof req.headers['ajax'] !== 'undefined') {
 			var api = true;
 	}

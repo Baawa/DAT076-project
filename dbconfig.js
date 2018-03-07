@@ -1,6 +1,6 @@
 module.exports = {
   app:{
-    accessKey           : process.env.APP_SECRET || 'abc123'
+    accessKey           : 'oZCq3CqRuK24Bt2txchdOuRHyw36eJ6hf1G1QENi'
   },
   db: {
     database            : process.env.RDS_DB_NAME  || 'dat076_db',

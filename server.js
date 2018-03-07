@@ -4,11 +4,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const session = require('express-session');
 
 const Table = require('./tablesetup');
 const Auth = require('./server_auth');
 const Webclient = require('./webclient');
 const Users = require('./service/userManager');
+const config = require('./dbconfig');
 
 
 // Setup
@@ -24,7 +26,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.listen(process.env.PORT || 8081, function () {
-  console.log('Server is running.')
+  console.log('Server is running.');
 });
 
 // Normal response

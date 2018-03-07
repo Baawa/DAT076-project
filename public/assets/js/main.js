@@ -33,7 +33,7 @@ function post(method, params, success, failure) {
     type: 'POST',
     data: params,
     headers: {ajax:true},
-    async: true,
+    async: false,
     cache: false,
     statusCode: {
       401: function() {
@@ -41,10 +41,11 @@ function post(method, params, success, failure) {
       }
     },
     success: function (data, textStatus, xhr) {
-       success(data);
-     },
-     error: function (xhr, textStatus, errorThrown) {
-       console.error(errorThrown);
+      success(data);
+    },
+    error: function (xhr, textStatus, errorThrown) {
+       console.log(textStatus);
+       console.log(errorThrown);
        failure(errorThrown);
      }
   });
@@ -133,49 +134,24 @@ function getContentView(apiMethod, navTitle, errorLabelId) {
 }
 
 
-function postForm(formId, apiMethod, callback, errorLabelId) {
+function postForm(formId, apiMethod, callback) {
   if (typeof formId !== 'undefined' && typeof apiMethod !== 'undefined') {
     var form = $(formId);
-    //var validator = form.validate();
-    if (true) { //form.valid()
-      //toggleLoadingDialog(true);
-      $(errorLabelId).hide();
-      var params = form.serializeArray();
-      post(apiMethod,  params,
-      function(data) {
-        //toggleLoadingDialog(false);
-        if (typeof callback !== 'undefined') {
-          if (typeof callback === 'function') {
-            callback(data);
-          } else if (typeof callback === 'string') {
-            window.location = callback;
-          }
+    var params = form.serializeArray();
+    post(apiMethod,  params,
+    function(data) {
+      if (typeof callback !== 'undefined') {
+        if (typeof callback === 'function') {
+          callback(data);
+        } else if (typeof callback === 'string') {
+          window.location.assign(callback);
         }
-      },
-      function(error) {
-        //toggleLoadingDialog(false);
-        if (typeof errorLabelId !== 'undefined') {
-          $(errorLabelId).val(error);
-          $(errorLabelId).show();
-        } else {
-          console.error(error);
-        }
-      });
-    } else {
-      if (typeof errorLabelId !== 'undefined') {
-        $(errorLabelId).val('Form invalid.');
-        $(errorLabelId).show();
-      } else {
-        console.error('Form invalid.');
       }
-      //validator.focusInvalid();
-    }
+    },
+    function(error) {
+      console.log(error);
+    });
   } else {
-    if (typeof errorLabelId !== 'undefined') {
-      $(errorLabelId).val('Form/Method undefined.');
-      $(errorLabelId).show();
-    } else {
-      console.error('Form/Method undefined.');
-    }
+    console.error('Form/Method undefined.');
   }
 }
