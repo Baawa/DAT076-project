@@ -1,8 +1,8 @@
 // Imports
 //const Users = require('./BDUserManager');
 
-const getContainerView = (req, res, next) => {
-  res.render('container', {assetpath:'../'});
+const getStartView = (req, res, next) => {
+  res.render('start', {assetpath:'../'});
 };
 
 const getLoginView = (req, res, next) => {
@@ -23,7 +23,7 @@ const postLogin = (req, res, next) => {
 };
 
 module.exports = {
-  getContainerView,
+  getStartView,
   getLoginView,
   getRegisterView,
   postLogin

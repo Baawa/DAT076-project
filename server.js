@@ -35,7 +35,7 @@ const standardResponse = (req, res, next) => {
 	res.send({'result':true});
 };
 
-app.get('/', Auth, Webclient.getContainerView); // TODOs.getProducts);
+app.get('/', Auth, Webclient.getStartView); // TODOs.getProducts);
 app.get('/login', Webclient.getLoginView);
 app.get('/register', Webclient.getRegisterView);
 
