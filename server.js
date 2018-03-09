@@ -40,6 +40,7 @@ app.get('/', Auth, Posts.getThreads, Webclient.getStartView); // TODOs.getProduc
 app.get('/login', Webclient.getLoginView);
 app.get('/register', Webclient.getRegisterView);
 app.get('/post/new', Auth, Webclient.getNewPostView);
+app.get('/post/:post_id', Auth, Posts.getPost, Webclient.getThreadView);
 
 //Post-requests
 app.post('/login', Users.login, Webclient.postLogin);

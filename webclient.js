@@ -17,6 +17,10 @@ const getNewPostView = (req, res, next) => {
   res.render('newpost', {assetpath:'../', user:req.user});
 }
 
+const getThreadView = (req, res, next) => {
+  res.render('thread', {assetpath:'../', user:req.user, post:req.post});
+}
+
 
 //Post
 const postLogin = (req, res, next) => {
@@ -31,5 +35,6 @@ module.exports = {
   getLoginView,
   getRegisterView,
   getNewPostView,
+  getThreadView,
   postLogin
 }

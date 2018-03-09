@@ -1,0 +1,15 @@
+<% if (typeof assetpath === 'undefined') { assetpath = '' } %>
+<!doctype html>
+<html lang="en">
+<head>
+	<% include partials/head %>
+</head>
+<body>
+	<% include partials/header %>
+
+  <div>
+    <h2><%= post.title %></h2>
+    <p><%= post.text %></p>
+  </div>
+</body>
+</html>

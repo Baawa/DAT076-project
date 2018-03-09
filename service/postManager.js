@@ -25,6 +25,8 @@ var create = (req, res, next) => {
 
 var getPost = (req, res, next) => {
   var post = new Post(req);
+  post.id = req.params.post_id;
+
   post.get(function(error, p) {
     if (error) {
       res.status(400).send({'error':'Could not get post.'});
@@ -67,6 +69,7 @@ var getThreads = (req, res, next) => {
 
       for (var i = 0; i < results.length; i++){
         var post = new Post(results[i]);
+        post.id = results[i].id; //for some reason id is not set in post.
 
         posts.push(post);
       }
