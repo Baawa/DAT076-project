@@ -11,6 +11,7 @@ const Auth = require('./server_auth');
 const Webclient = require('./webclient');
 const Users = require('./service/userManager');
 const config = require('./dbconfig');
+const Posts = require('./service/postManager');
 
 
 // Setup
@@ -35,13 +36,15 @@ const standardResponse = (req, res, next) => {
 	res.send({'result':true});
 };
 
-app.get('/', Auth, Webclient.getStartView); // TODOs.getProducts);
+app.get('/', Auth, Posts.getThreads, Webclient.getStartView); // TODOs.getProducts);
 app.get('/login', Webclient.getLoginView);
 app.get('/register', Webclient.getRegisterView);
+app.get('/post/new', Auth, Webclient.getNewPostView);
 
 //Post-requests
 app.post('/login', Users.login, Webclient.postLogin);
 app.post('/register', Users.register, standardResponse);
+app.post('/post/new', Auth, Posts.create, standardResponse);
 
 //tablesetup
 app.get('/setup/', Table.deleteTables, Table.createTables, standardResponse);

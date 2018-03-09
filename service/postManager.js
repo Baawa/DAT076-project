@@ -1,11 +1,16 @@
-const Post = require('./model/post');
+const Post = require('../model/post');
 const path = require('path');
 const jwt = require('jsonwebtoken');
-const config = require('./dbconfig');
-const Sql = require('./DATSQL/DATSql');
+const config = require('../dbconfig');
+const Sql = require('../DATSQL/DATSql');
 
 var create = (req, res, next) => {
   var post = new Post(req.body);
+  post.user_id = req.user.id;
+
+  var curr_date = new Date();
+  post.date = "" + curr_date.getDate() + "/" + curr_date.getMonth() + "/" + curr_date.getFullYear() + " " + curr_date.getHours() + ":" + curr_date.getMinutes();
+
   post.locked = false;
 
   post.save(function(error, post_id) {

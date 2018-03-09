@@ -1,0 +1,73 @@
+<table id="posts-table" class="table">
+  <thead data-events="orderEvents">
+    <th data-field="clickable" data-visible="false">Clickable</th>
+    <th data-field="id" data-visible="false">Id</th>
+    <th data-field="title" data-sortable="true">Title</th>
+    <th data-field="created" data-sortable="true">Created</th>
+  </thead>
+  <tbody>
+    <% if (typeof posts !== 'undefined') { %>
+      <% posts.forEach(function(post) { %>
+        <tr>
+          <td>1</td>
+          <td><%= post.id %></td>
+          <td><%= post.title %></td>
+          <td><%= post.date %></td>
+        </tr>
+      <% }); %>
+    <% } %>
+  </tbody>
+</table>
+
+<script>
+function getSelectedPost(id) {
+  /*get('/views/posts/view', {'post_id':id}, function(data) {
+    // do something
+  }, function(error) {
+    console.log(error);
+  });*/
+}
+
+function createPostsTable() {
+  var $table = $('#posts-table');
+
+  $table.on('click-row.bs.table', function (e, row, $element) {
+    if (row.clickable == 1){
+      getSelectedPost(row.id);
+    }
+  });
+
+  $table.bootstrapTable({
+    toolbar: ".toolbar",
+    clickToSelect: false,
+    showRefresh: true,
+    search: true,
+    showToggle: true,
+    showColumns: false,
+    pagination: true,
+    searchAlign: 'left',
+    pageSize: 20,
+    pageList: [8,10,25,50,100],
+    formatShowingRows: function(pageFrom, pageTo, totalRows){
+      //do nothing here, we don't want to show the text "showing x of y from..."
+    },
+    formatRecordsPerPage: function(pageNumber){
+      return pageNumber + " rows visible";
+    },
+    icons: {
+      refresh: 'fa fa-refresh',
+      toggle: 'fa fa-th-list',
+      columns: 'fa fa-columns',
+      detailOpen: 'fa fa-plus-circle',
+      detailClose: 'fa fa-minus-circle'
+    }
+  });
+
+  $(window).resize(function () {
+    $table.bootstrapTable('resetView');
+  });
+}
+
+$().ready(createPostsTable());
+
+</script>

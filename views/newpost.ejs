@@ -1,0 +1,33 @@
+<% if (typeof assetpath === 'undefined') { assetpath = '' } %>
+<!doctype html>
+<html lang="en">
+<head>
+	<% include partials/head %>
+</head>
+<body>
+	<% include partials/header %>
+
+  <form id="newPostForm" action="javascript:void(0);">
+    <div class="form-group">
+        <label class="control-label">Title</label>
+        <input
+              name="title"
+              type="text"
+              required="true"
+              placeholder="Name.."
+              class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Text</label>
+      <textarea class="form-control"
+                name="text"
+                rows="3"
+                placeholder="E.g. My first forum thread"
+                ></textarea>
+    </div>
+
+    <button class="btn" onclick="postForm('#newPostForm', '/post/new', '/')">Start thread</button>
+  </form>
+</body>
+</html>

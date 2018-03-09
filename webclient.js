@@ -2,7 +2,7 @@
 //const Users = require('./BDUserManager');
 
 const getStartView = (req, res, next) => {
-  res.render('start', {assetpath:'../'});
+  res.render('start', {assetpath:'../', user:req.user, posts:req.posts});
 };
 
 const getLoginView = (req, res, next) => {
@@ -12,6 +12,10 @@ const getLoginView = (req, res, next) => {
 const getRegisterView = (req, res, next) => {
   res.render('register', {assetpath:'../'});
 };
+
+const getNewPostView = (req, res, next) => {
+  res.render('newpost', {assetpath:'../', user:req.user});
+}
 
 
 //Post
@@ -26,5 +30,6 @@ module.exports = {
   getStartView,
   getLoginView,
   getRegisterView,
+  getNewPostView,
   postLogin
 }
