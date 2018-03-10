@@ -49,6 +49,7 @@ app.post('/login', Users.login, Webclient.postLogin);
 app.post('/register', Users.register, standardResponse);
 app.post('/post/new', Auth, Posts.create, standardResponse);
 app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, standardResponse);
+app.post('/post/lock', Auth, Posts.getPost, Posts.lockPost, standardResponse);
 
 //tablesetup
 app.get('/setup/', Table.deleteTables, Table.createTables, standardResponse);

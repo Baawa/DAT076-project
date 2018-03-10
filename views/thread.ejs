@@ -24,9 +24,16 @@
 						<i class="far fa-star"></i>
 					</button>
 				<% } %>
-
-
 			</form>
+
+			<% if (user.admin && !post.locked){ %>
+				<form id="lockForm" action="javascript:void(0);">
+					<input name="post_id" type="hidden" value="<%= post.id %>"/>
+					<button class="btn btn-dark" onclick="postForm('#lockForm', '/post/lock', '/post/<%= post.id %>')">
+						<i class="fas fa-lock"></i>
+					</button>
+				</form>
+			<% } %>
 	  </div>
 
 		<ul>

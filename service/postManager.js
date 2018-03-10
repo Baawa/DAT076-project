@@ -23,9 +23,26 @@ var create = (req, res, next) => {
   });
 };
 
+var lockPost = (req, res, next) => {
+  if (typeof req.post !== 'undefined') {
+    var post = new Post(req.post);
+    post.id = req.post.id;
+    post.locked = true;
+    post.title = "[LOCKED] " + post.title;
+
+    post.update(function(error, post_id){
+      if (error) {
+        res.status(400).send({'error':'Could not create post.'});
+      } else {
+        next();
+      }
+    });
+  }
+};
+
 var getPost = (req, res, next) => {
   var post = new Post(req);
-  post.id = req.post_id || req.params.post_id;
+  post.id = req.post_id || req.params.post_id || req.body.post_id;
 
   post.get(function(error, p) {
     if (error) {
@@ -73,7 +90,7 @@ var getSubPosts = (req, res, next) => {
       next();
     }
   });
-}
+};
 
 var getThreads = (req, res, next) => {
   Sql.query('SELECT * FROM posts WHERE parent_id IS NULL;', [],
@@ -105,10 +122,11 @@ var getThreads = (req, res, next) => {
       next();
     }
   });
-}
+};
 
 module.exports = {
   create,
+  lockPost,
   getPost,
   getSubPosts,
   getThreads

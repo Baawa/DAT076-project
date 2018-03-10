@@ -55,7 +55,7 @@ class User {
 
   authenticate(callback) {
     var pw = this.password;
-    Sql.query('SELECT id, name, password, banned, image FROM users WHERE name = ?;', [this.name],
+    Sql.query('SELECT * FROM users WHERE name = ?;', [this.name],
     function(error, results, fields) {
       if (error) {
         console.error(error);

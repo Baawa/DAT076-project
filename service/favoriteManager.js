@@ -83,6 +83,7 @@ var getFavoritesForUser = (req, res, next) => {
 
       for (var i = 0; i < results.length; i++){
         var fav = new Favorite(results[i]);
+        fav.id = results[i].id;
 
         favs.push(fav);
       }

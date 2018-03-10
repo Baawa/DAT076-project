@@ -70,6 +70,23 @@ class Post {
       callback('Cannot save user without post.', null);
     }
   }
+
+  update(callback){
+    if (typeof this.id !== 'undefined'){
+      Sql.query('UPDATE posts SET ? WHERE id = ?;', [this, this.id], function (error, results, fields) {
+        if (error) {
+          console.error(error);
+          callback('Could not save post.', null);
+        } else {
+          console.log('Did save post: ', results.insertId);
+          callback(null, results.insertId);
+        }
+      });
+    } else {
+      console.error('Cannot save without post.');
+      callback('Cannot save without post.', null);
+    }
+  }
 }
 
 module.exports = Post;
