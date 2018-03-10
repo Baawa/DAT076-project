@@ -14,7 +14,7 @@
               name="title"
               type="text"
               required="true"
-              placeholder="Name.."
+              placeholder="Name..."
               class="form-control">
     </div>
 
@@ -22,12 +22,13 @@
       <label class="control-label">Text</label>
       <textarea class="form-control"
                 name="text"
+								required="true"
                 rows="3"
                 placeholder="E.g. My first forum thread"
                 ></textarea>
     </div>
 
-    <button class="btn" onclick="postForm('#newPostForm', '/post/new', '/')">Start thread</button>
+    <button class="btn btn-success" onclick="postForm('#newPostForm', '/post/new', '/')">Start thread</button>
   </form>
 </body>
 </html>
