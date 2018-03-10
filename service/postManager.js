@@ -31,14 +31,31 @@ var getPost = (req, res, next) => {
     if (error) {
       res.status(400).send({'error':'Could not get post.'});
     } else {
-      req.post = new Post(p);
+      var post = new Post(p);
+      post.id = p.id;
+
+      post.favorite = false;
+
+      if (typeof req.favs !== 'undefined'){
+        for (var j = 0; j < req.favs.length; j++){
+          if (req.favs[j].post_id == post.id){
+            post.favorite = true;
+            break;
+          }
+        }
+      }
+
+      req.post = post;
+
       next();
     }
   });
 };
 
 var getSubPosts = (req, res, next) => {
-  Sql.query('SELECT * FROM posts WHERE parent_id=?;', [req.post_id],
+  var post_id = req.post.id || req.post_id;
+
+  Sql.query('SELECT * FROM posts WHERE parent_id=?;', [post_id],
   function(error, results, fields) {
     if (error) {
       console.error(error);
@@ -52,7 +69,7 @@ var getSubPosts = (req, res, next) => {
         posts.push(post);
       }
 
-      req.posts = posts;
+      req.sub_posts = posts;
       next();
     }
   });
@@ -72,7 +89,7 @@ var getThreads = (req, res, next) => {
         post.id = results[i].id; //for some reason id is not set in post.
         post.favorite = false;
 
-        if (typeof req.favs != 'undefined'){
+        if (typeof req.favs !== 'undefined'){
           for (var j = 0; j < req.favs.length; j++){
             if (req.favs[j].post_id == post.id){
               post.favorite = true;
