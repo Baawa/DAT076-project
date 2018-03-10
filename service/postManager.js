@@ -82,6 +82,7 @@ var getSubPosts = (req, res, next) => {
 
       for (var i = 0; i < results.length; i++){
         var post = new Post(results[i]);
+        post.id = results[i].id;
 
         posts.push(post);
       }
