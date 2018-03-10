@@ -41,13 +41,14 @@ app.get('/', Auth, Favorites.getFavoritesForUser, Posts.getThreads, Webclient.ge
 app.get('/login', Webclient.getLoginView);
 app.get('/register', Webclient.getRegisterView);
 app.get('/post/new', Auth, Webclient.getNewPostView);
-app.get('/post/:post_id', Auth, Posts.getPost, Webclient.getThreadView);
+app.get('/post/:post_id', Auth, Favorites.getFavoritesForUser, Posts.getPost, Posts.getSubPosts, Webclient.getThreadView);
 app.get('/userpage', Auth, Favorites.getFavoritesForUser, Posts.getThreads, Webclient.getUserView);
 
 //Post-requests
 app.post('/login', Users.login, Webclient.postLogin);
 app.post('/register', Users.register, standardResponse);
 app.post('/post/new', Auth, Posts.create, standardResponse);
+app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, standardResponse);
 
 //tablesetup
 app.get('/setup/', Table.deleteTables, Table.createTables, standardResponse);

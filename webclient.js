@@ -18,7 +18,7 @@ const getNewPostView = (req, res, next) => {
 }
 
 const getThreadView = (req, res, next) => {
-  res.render('thread', {assetpath:'../', user:req.user, post:req.post});
+  res.render('thread', {assetpath:'../', user:req.user, post:req.post, sub_posts:req.sub_posts});
 }
 
 const getUserView = (req, res, next) => {

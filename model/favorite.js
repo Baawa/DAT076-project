@@ -50,8 +50,8 @@ class Favorite {
   }
 
   save(callback) {
-    if (this.title.length > 0) {
-      Sql.query('INSERT INTO posts SET ?;', this, function (error, results, fields) {
+    if (this.user_id !== 'undefined') {
+      Sql.query('INSERT INTO favorites SET ?;', this, function (error, results, fields) {
         if (error) {
           console.error(error);
           callback('Could not save post.', null);
