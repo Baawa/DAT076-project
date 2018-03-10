@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 	<% include partials/head %>
+	<link rel="stylesheet" type="text/css" href="<%= assetpath %>assets/css/user.css">
 
 
 </head>
@@ -20,8 +21,10 @@
               class="form-control">
     </div>
 
-    <button class="btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Change Picture</button>
+    <button class="btn green-btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Change Picture</button>
   </form>
+
+  <!-- <button class="btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Ban User</button> -->
 
 	<div class="container">
 	  <h2>Favorite Threads</h2>

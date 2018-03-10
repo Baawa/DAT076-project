@@ -1,28 +1,37 @@
 <div class="container d-flex flex-row justify-content-between align-items-center mb-4">
-  <div>
-      <h2 class="font-weight-bold">LocalHost:8081</h2>
-      <h6 class="text-secondary">Probably the best forum in the world</h6>
-    </div>
-
 
   <div class="d-flex flex-row" >
-    <a href="/" class="mr-1 btn btn-outline-primary " >Threads</a>
+    <h2 class="font-weight-bold">LocalHost:8081</h2>
+    <h6 class="text-secondary">Probably the best forum in the world</h6>
+  </div>
+  <div class="d-flex flex-row justify-content-start align-items-center">
+    
 
         <div class="d-flex flex-row justify-content-start align-items-center">
+        <a href="/" class="mr-1 btn btn-outline-primary " >Threads</a>
           <div><a href="/userpage" class="btn btn-outline-secondary" ><%= user.name %></a></div>
-
           <% if (user.image==null){ %>
             <img src="<%= assetpath %>assets/images/kappa.png" class="ml-1 bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
           <%} else { %>
             <img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>"
           <% } %>
         </div>
-    <a href="" class="mr-1 ml-2 btn btn-outline-danger " >Log Out</a>
+    <button class="mr-1 ml-2 btn btn-outline-danger " onclick="deleteAllCookies()">Log out</button>
     <script>
 
     function clearCookies(){
        document.cookie = "x_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       }
+    function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+    console.log(cookies[0]);
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
 
     </script>
   </div>

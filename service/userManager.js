@@ -25,18 +25,36 @@ var loadPic = (req, res, next) => {
   var user = new User(req.body);
   user.id = req.user.id;
   user.image = req.body.image;
-  console.log(req.body.image);
 
   if (typeof user.image !== 'undefined') {
     user.savePic(function(error, user_id) {
       if (error) {
-        res.status(400).send({'error':'Could not create user.'});
+        res.status(400).send({'error':'Could not upload picture.'});
+      } else {
+        req.user.image = user.image;
+        next();
+      }
+    });
+  } else {
+    res.status(400).send({'error':'Could not upload picture.'});
+  }
+};
+
+var ban = (req, res, next) => {
+  var user = new User(req.body);
+  user.id = req.user.id;
+  user.banned = true;
+
+  if (typeof user.id !== 'undefined') {
+    user.banUser(function(error, user_id) {
+      if (error) {
+        res.status(400).send({'error':'Could not ban user.'});
       } else {
         next();
       }
     });
   } else {
-    res.status(400).send({'error':'Must have password.'});
+    res.status(400).send({'error':'Could not ban user.'});
   }
 };
 
@@ -105,5 +123,6 @@ module.exports = {
   clearTokenCookie,
   getUser,
   loadPic,
+  ban,
   updateUser
 }

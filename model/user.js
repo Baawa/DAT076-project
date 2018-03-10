@@ -140,6 +140,23 @@ class User {
     }
   }
 
+  banUser(callback) {
+    
+      if (this.id !== 'undefined') {
+      Sql.query('UPDATE users SET banned = ? WHERE id = ?;', [true, this.id], function (error, results, fields) {
+        if (error) {
+          console.error(error);
+          callback('Could not ban user.', null);
+        } else {
+          console.log('Did save user: ', results.insertId);
+          callback(null, results.insertId);
+        }
+      });
+    }
+  }
+    
+  
+
   update(callback) {
     // Remove properties that should not be updated
     delete this.password;
