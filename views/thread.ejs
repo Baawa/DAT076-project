@@ -15,7 +15,11 @@
 
 			<div class="d-flex flex-row justify-content-start align-items-center">
 		    <div><a id="name-<%= post.id %>" href="/userpage/<%= post.user_id %>" style="height: 1rem;"></a></div>
-		    <img id="image-<%= post.id %>" src="" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
+				<% if (user.image==null){ %>
+					<img src="<%= assetpath %>assets/images/kappa.png" class="ml-1 bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="Default"/>
+				<%} else { %>
+					<img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="User's Pic"/>
+				<% } %>
 		  </div>
 
 			<form id="starForm" action="javascript:void(0);">
@@ -53,7 +57,11 @@
 
 						<div class="d-flex flex-row justify-content-start align-items-center">
 					    <div><a id="name-<%= spost.id %>" href="/userpage/<%= spost.user_id %>" style="height: 1rem;"></a></div>
-					    <img id="image-<%= spost.id %>" src="" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
+							<% if (user.image==null){ %>
+								<img src="<%= assetpath %>assets/images/kappa.png" class="ml-1 bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="Default"/>
+							<%} else { %>
+								<img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="User's Pic"/>
+							<% } %>
 					  </div>
 					</li>
 				<% }); %>
@@ -71,7 +79,7 @@
 		                name="text"
 		                rows="3"
 		                placeholder="E.g. I loved your post, brah"
-		                ></textarea>
+										required></textarea>
 		    </div>
 
 		    <button class="btn-light" onclick="postForm('#commentForm', '/post/new', '/post/<%= post.id %>')">Add comment</button>
