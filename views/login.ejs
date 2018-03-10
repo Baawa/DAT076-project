@@ -43,7 +43,6 @@
 				text-align: center;
 		    width: 50%;
 
-
 		}
 		</style>
 </head>
@@ -52,7 +51,7 @@
 <img class="center3" src="<%= assetpath %>assets/images/forum.png" alt="Forum Logo">
 
   <form id="loginForm" action="javascript:void(0);">
-    <div class="form-group">
+    <div class="center form-group">
         <label>Name</label>
         <input
               name="name"
@@ -61,7 +60,7 @@
               placeholder="Name.."
               class="form-control">
     </div>
-    <div class="form-group">
+    <div class="center form-group">
         <label>Password</label>
         <input
               name="password"
@@ -70,8 +69,8 @@
               placeholder="Password.."
               class="form-control">
     </div>
-      <button class="btn" onclick="postForm('#loginForm', '/login', '/')">Login</button>
-      <a href="/register">Register account</a>
+      <button class="center2 btn" onclick="postForm('#loginForm', '/login', '/')">Login</button>
+      <a class="center" href="/register">Register account</a>
   </form>
 </body>
 </html>
