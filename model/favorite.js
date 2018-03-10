@@ -1,7 +1,7 @@
 'use strict';
 
 // Import
-const Sql = require('./DATSQL/DATSql');
+const Sql = require('../DATSQL/DATSql');
 const Pasteurize = require('pasteurize').Pasteurize;
 
 // Definition

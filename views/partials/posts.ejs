@@ -1,21 +1,32 @@
-<table id="posts-table" class="table">
-  <thead data-events="postEvents">
-    <th data-field="id" data-visible="false">Id</th>
-    <th data-field="title" data-sortable="true">Title</th>
-    <th data-field="created" data-sortable="true">Created</th>
-  </thead>
-  <tbody>
-    <% if (typeof posts !== 'undefined') { %>
-      <% posts.forEach(function(post) { %>
-        <tr>
-          <td><%= post.id %></td>
-          <td><%= post.title %></td>
-          <td><%= post.date %></td>
-        </tr>
-      <% }); %>
-    <% } %>
-  </tbody>
-</table>
+<div class="container">
+  <h2>Threads</h2>
+  <table id="posts-table" class="table table-hover">
+    <thead class="thead-light" data-events="postEvents">
+      <th scope="col" data-field="id" data-visible="false">Id</th>
+      <th scope="col" data-field="title" data-sortable="true">Title</th>
+      <th scope="col" data-field="created" data-sortable="true">Created</th>
+      <th scope="col" data-field="favorite" data-sortable="true"></th>
+    </thead>
+    <tbody>
+      <% if (typeof posts !== 'undefined') { %>
+        <% posts.forEach(function(post) { %>
+          <tr>
+            <td><%= post.id %></td>
+            <td><%= post.title %></td>
+            <td><%= post.date %></td>
+            <% if (post.favorite){ %>
+              <td data-align='right' data-width=10 class="text-warning"><i class="fas fa-star"></i></td>
+            <% } else{ %>
+              <td data-align='right' data-width=10 class="text-secondary"><i class="far fa-star"></i></td>
+            <% } %>
+          </tr>
+        <% }); %>
+      <% } %>
+    </tbody>
+  </table>
+
+  <a class="btn btn-primary" href="/post/new">New thread</a>
+</div>
 
 <script>
 function getSelectedPost(id) {
@@ -32,9 +43,9 @@ function createPostsTable() {
   $table.bootstrapTable({
     toolbar: ".toolbar",
     clickToSelect: false,
-    showRefresh: true,
+    showRefresh: false,
     search: true,
-    showToggle: true,
+    showToggle: false,
     showColumns: false,
     pagination: true,
     searchAlign: 'right',

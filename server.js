@@ -12,6 +12,7 @@ const Webclient = require('./webclient');
 const Users = require('./service/userManager');
 const config = require('./dbconfig');
 const Posts = require('./service/postManager');
+const Favorites = require('./service/favoriteManager');
 
 
 // Setup
@@ -36,7 +37,7 @@ const standardResponse = (req, res, next) => {
 	res.send({'result':true});
 };
 
-app.get('/', Auth, Posts.getThreads, Webclient.getStartView); // TODOs.getProducts);
+app.get('/', Auth, Favorites.getFavoritesForUser, Posts.getThreads, Webclient.getStartView);
 app.get('/login', Webclient.getLoginView);
 app.get('/register', Webclient.getRegisterView);
 app.get('/post/new', Auth, Webclient.getNewPostView);

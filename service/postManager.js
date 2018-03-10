@@ -25,7 +25,7 @@ var create = (req, res, next) => {
 
 var getPost = (req, res, next) => {
   var post = new Post(req);
-  post.id = req.params.post_id;
+  post.id = req.post_id || req.params.post_id;
 
   post.get(function(error, p) {
     if (error) {
@@ -70,6 +70,16 @@ var getThreads = (req, res, next) => {
       for (var i = 0; i < results.length; i++){
         var post = new Post(results[i]);
         post.id = results[i].id; //for some reason id is not set in post.
+        post.favorite = false;
+
+        if (typeof req.favs != 'undefined'){
+          for (var j = 0; j < req.favs.length; j++){
+            if (req.favs[j].post_id == post.id){
+              post.favorite = true;
+              break;
+            }
+          }
+        }
 
         posts.push(post);
       }

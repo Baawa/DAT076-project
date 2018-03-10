@@ -1,8 +1,8 @@
-const Favorite = require('./model/favorite');
+const Favorite = require('../model/favorite');
 const path = require('path');
 const jwt = require('jsonwebtoken');
-const config = require('./dbconfig');
-const Sql = require('./DATSQL/DATSql');
+const config = require('../dbconfig');
+const Sql = require('../DATSQL/DATSql');
 
 var add = (req, res, next) => {
   var fav = new Favorite(req.body);

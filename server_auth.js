@@ -1,9 +1,7 @@
 const config = require('./dbconfig');
 const jwt = require('jsonwebtoken');
 
-// Check token and set user
 module.exports = function(req, res, next) {
-	// console.log('Base url: ', req.baseUrl);
 	var token = req.cookies['x_access_token'] || req.headers['x_access_token'];
 	if (typeof req.headers['x_access_token'] !== 'undefined' ||
 			typeof req.headers['ajax'] !== 'undefined') {
@@ -25,11 +23,10 @@ module.exports = function(req, res, next) {
 			}
 		});
 	} else {
-		// console.error('Missing token.');
 		if (api) {
 			res.status(401).send({'error':'Missing token.'});
 		} else {
-			res.status(401).redirect('/register'); // Was register
+			res.status(401).redirect('/login');
 		}
 	}
 };
