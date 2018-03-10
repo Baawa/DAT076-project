@@ -52,7 +52,7 @@
 <img class="center3" src="<%= assetpath %>assets/images/forum.png" alt="Forum Logo">
 
   <form id="loginForm" action="javascript:void(0);">
-    <div class="center form-group">
+    <div class="form-group">
         <label>Name</label>
         <input
               name="name"
@@ -61,7 +61,7 @@
               placeholder="Name.."
               class="form-control">
     </div>
-    <div class="center form-group">
+    <div class="form-group">
         <label>Password</label>
         <input
               name="password"
@@ -70,8 +70,8 @@
               placeholder="Password.."
               class="form-control">
     </div>
-      <button class="center2 btn" onclick="postForm('#loginForm', '/login', '/')">Login</button>
-      <a class="center" href="/register">Register account</a>
+      <button class="btn" onclick="postForm('#loginForm', '/login', '/')">Login</button>
+      <a href="/register">Register account</a>
   </form>
 </body>
 </html>
