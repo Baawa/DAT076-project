@@ -20,15 +20,15 @@
 
     <div class="form-group">
       <label class="control-label">Text</label>
-      <textarea class="form-control"
+      <textarea class="form-control" required
                 name="text"
-								required="true"
                 rows="3"
                 placeholder="E.g. My first forum thread"
                 ></textarea>
     </div>
 
     <button class="btn btn-success" onclick="postForm('#newPostForm', '/post/new', '/')">Start thread</button>
+		<button class="btn btn-light" onclick="">Cancel</button>
   </form>
 </body>
 </html>
