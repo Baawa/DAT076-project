@@ -8,6 +8,17 @@
   <div class="d-flex flex-row justify-content-start align-items-center">
     <div><a href="/userpage" style="height: 1rem;"><%= user.name %></a></div>
     <img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
+    
+    <button class="btn" onclick="logout()">Log out</button>
+
+    <script>
+
+    function clearCookies(){
+    	document.cookie = "x_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	}
+
+    </script>
+
   </div>
 
 </div>

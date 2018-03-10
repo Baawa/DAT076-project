@@ -21,6 +21,25 @@ var register = (req, res, next) => {
   }
 };
 
+var loadPic = (req, res, next) => {
+  var user = new User(req.body);
+  user.id = req.user.id;
+  user.image = req.body.image;
+  console.log(req.body.image);
+
+  if (typeof user.image !== 'undefined') {
+    user.savePic(function(error, user_id) {
+      if (error) {
+        res.status(400).send({'error':'Could not create user.'});
+      } else {
+        next();
+      }
+    });
+  } else {
+    res.status(400).send({'error':'Must have password.'});
+  }
+};
+
 var login = (req, res, next) => {
   if (typeof req.body.name !== 'undefined' && typeof req.body.password !== 'undefined') {
     const user = new User(req);
@@ -85,5 +104,6 @@ module.exports = {
   logout,
   clearTokenCookie,
   getUser,
+  loadPic,
   updateUser
 }

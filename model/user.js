@@ -93,6 +93,21 @@ class User {
     });
   }
 
+  savePic(callback) {
+
+    if (this.id !== 'undefined') {
+      Sql.query('UPDATE users SET image = ? WHERE id = ?;', [this.image, this.id], function (error, results, fields) {
+        if (error) {
+          console.error(error);
+          callback('Could not save user.', null);
+        } else {
+          console.log('Did save user: ', results.insertId);
+          callback(null, results.insertId);
+        }
+      });
+    }
+  }
+
   save(callback) {
     console.log(this);
     if (this.name.length > 0) {
