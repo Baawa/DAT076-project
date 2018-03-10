@@ -44,6 +44,10 @@ app.get('/post/new', Auth, Webclient.getNewPostView);
 app.get('/post/:post_id', Auth, Favorites.getFavoritesForUser, Posts.getPost, Posts.getSubPosts, Webclient.getThreadView);
 app.get('/userpage', Auth, Favorites.getFavoritesForUser, Posts.getThreads, Webclient.getUserView);
 
+app.get('/user/:user_id', Auth, Users.getUser, function(req, res, next){
+	res.send({'user': req.found_user});
+});
+
 //Post-requests
 app.post('/login', Users.login, Webclient.postLogin);
 app.post('/register', Users.register, standardResponse);

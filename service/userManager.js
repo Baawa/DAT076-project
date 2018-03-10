@@ -55,12 +55,14 @@ var clearTokenCookie = (req, res, next) => {
 }
 
 var getUser = (req, res, next) => {
-  var user = new User(req);
+  var user_id = req.user_id || req.body.user_id || req.params.user_id;
+  var user = new User();
+  user.id = user_id;
   user.get(function(error, u) {
     if (error) {
       res.status(400).send({'error':'Could not get user.'});
     } else {
-      req.user = new User(u);
+      req.found_user = new User(u);
       next();
     }
   });

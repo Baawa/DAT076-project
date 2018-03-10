@@ -11,6 +11,12 @@
 		<div>
 	    <h2><%= post.title %></h2>
 	    <p><%= post.text %></p>
+			<p><%= post.date %></p>
+
+			<div class="d-flex flex-row justify-content-start align-items-center">
+		    <div><a id="name-<%= post.id %>" href="/userpage/<%= post.user_id %>" style="height: 1rem;"></a></div>
+		    <img id="image-<%= post.id %>" src="" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
+		  </div>
 
 			<form id="starForm" action="javascript:void(0);">
 				<input name="post_id" type="hidden" value="<%= post.id %>"/>
@@ -42,6 +48,12 @@
 					<li>
 						<h2><%= spost.title %></h2>
 				    <p><%= spost.text %></p>
+						<p><%= spost.date %></p>
+
+						<div class="d-flex flex-row justify-content-start align-items-center">
+					    <div><a id="name-<%= spost.id %>" href="/userpage/<%= spost.user_id %>" style="height: 1rem;"></a></div>
+					    <img id="image-<%= spost.id %>" src="" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
+					  </div>
 					</li>
 				<% }); %>
 			<% } %>
@@ -66,4 +78,25 @@
 		<% } %>
 	</div>
 </body>
+<script>
+
+function getUserInfo(id, name_id, image_id){
+	get('/user/' + id, [], function(data){
+		$('#' + name_id).html(data.user.name);
+		$('#' + image_id).attr('src', data.user.image);
+	}, function(error){
+		console.log(error);
+	});
+}
+
+getUserInfo("<%= post.user_id %>", "name-<%= post.id %>", "image-<%= post.id %>");
+
+<% if (typeof sub_posts !== 'undefined') { %>
+	<% sub_posts.forEach(function(spost) { %>
+		getUserInfo("<%= spost.user_id %>", "name-<%= spost.id %>", "image-<%= spost.id %>");
+	<% }); %>
+<% } %>
+
+
+</script>
 </html>

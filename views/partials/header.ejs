@@ -1,16 +1,13 @@
-<div class="container sticky-top d-flex flex-row justify-content-between mb-4">
+<div class="container d-flex flex-row justify-content-between align-items-center mb-4">
   <div>
     <h2 class="font-weight-bold">LocalHost:8081</h2>
     <h6 class="text-secondary">Probably the best forum in the world</h6>
   </div>
+  <a href="/">Threads</a>
+  <a href="">Log Out</a>
   <div class="d-flex flex-row justify-content-start align-items-center">
-  	<a href="../">Threads</a>
-
-    <div><a href="../userpage" style="height: 1rem;"><%= user.name %></a></div>
+    <div><a href="/userpage" style="height: 1rem;"><%= user.name %></a></div>
     <img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
-    
-    <a href="">Log Out</a>
-
   </div>
 
 </div>
