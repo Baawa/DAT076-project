@@ -1,5 +1,11 @@
-<div>
-  <!-- TODO: link to user profile -->
-  <a href="#"><%= user.name %></a>
-  <img src="<%= user.image %>"/>
+<div class="container sticky-top d-flex flex-row justify-content-between mb-4">
+  <div>
+    <h2 class="font-weight-bold">LocalHost:8081</h2>
+    <h6 class="text-secondary">Probably the best forum in the world</h6>
+  </div>
+  <div class="d-flex flex-row justify-content-start align-items-center">
+    <div><a href="/user" style="height: 1rem;"><%= user.name %></a></div>
+    <img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
+  </div>
+
 </div>

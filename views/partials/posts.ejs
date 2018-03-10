@@ -1,11 +1,14 @@
 <div class="container">
   <h2>Threads</h2>
+  <div class="clearfix">
+    <a class="btn btn-primary float-right" href="/post/new">New thread</a>
+  </div>
   <table id="posts-table" class="table table-hover">
     <thead class="thead-light" data-events="postEvents">
       <th scope="col" data-field="id" data-visible="false">Id</th>
       <th scope="col" data-field="title" data-sortable="true">Title</th>
       <th scope="col" data-field="created" data-sortable="true">Created</th>
-      <th scope="col" data-field="favorite" data-sortable="true"></th>
+      <th scope="col" data-field="favorite" data-sortable="false" data-width=20px data-align='center' data-halign='center'></th>
     </thead>
     <tbody>
       <% if (typeof posts !== 'undefined') { %>
@@ -15,17 +18,15 @@
             <td><%= post.title %></td>
             <td><%= post.date %></td>
             <% if (post.favorite){ %>
-              <td data-align='right' data-width=10 class="text-warning"><i class="fas fa-star"></i></td>
+              <td class="text-warning"><i class="fas fa-star"></i></td>
             <% } else{ %>
-              <td data-align='right' data-width=10 class="text-secondary"><i class="far fa-star"></i></td>
+              <td class="text-secondary"><i class="far fa-star"></i></td>
             <% } %>
           </tr>
         <% }); %>
       <% } %>
     </tbody>
   </table>
-
-  <a class="btn btn-primary" href="/post/new">New thread</a>
 </div>
 
 <script>
@@ -47,10 +48,8 @@ function createPostsTable() {
     search: true,
     showToggle: false,
     showColumns: false,
-    pagination: true,
+    pagination: false,
     searchAlign: 'right',
-    pageSize: 20,
-    pageList: [8,10,25,50,100],
     formatShowingRows: function(pageFrom, pageTo, totalRows){
       //do nothing here, we don't want to show the text "showing x of y from..."
     },
