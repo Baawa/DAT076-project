@@ -44,7 +44,10 @@ app.get('/register', Webclient.getRegisterView);
 app.get('/post/new', Auth, Webclient.getNewPostView);
 app.get('/post/:post_id', Auth, Favorites.getFavoritesForUser, Posts.getPost, Posts.getSubPosts, Webclient.getThreadView);
 app.get('/userpage/:user_id', Auth, Users.getUser, Favorites.getFavoritesForFoundUser, Posts.getThreads, Posts.getAllSubPosts, Webclient.getUserView);
-app.get('/logout', Auth, Webclient.getLogoutView);
+app.get('/logout', Auth, function(req, res, next){
+	res.clearCookie('x_access_token');
+  res.redirect('/');
+});
 app.get('/about', Auth, Users.getUser, Webclient.getAboutView);
 app.get('/help', Auth, Webclient.getHelpView);
 
