@@ -1,4 +1,45 @@
+.in-row {
+	display: flex;
+	flex-direction : row;
+	justify-content: space-between;
+}
+
+
 .green-btn {
+	background-color: #fff;
+	color: #2ECC71;
+	border-width: 1px;
+	border-color: #2ECC71;
+}
+
+.green-btn:hover {
 	background-color: #2ECC71;
 	color: #fff;
+}
+
+.user-input {
+	width: 100%;
+	
+}
+
+.ban-btn {
+	background-color: #fff;
+	color: #8E44AD;
+	border-width: 1px;
+	border-color: #8E44AD;
+}
+
+.ban-btn:hover {
+	background-color: #8E44AD;
+	color: #fff;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 0;
 }

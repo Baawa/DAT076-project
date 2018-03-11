@@ -10,94 +10,102 @@
 <body>
 
 	<% include partials/header %>
+  <div class="container">
 
-	<form id="pictureForm" action="javascript:void(0);">
-    <div class="form-group">
-        <input
-              type="url"
-              name="image"
-              required="true"
-              placeholder="Image Url..."
-              class="form-control">
+    <div class="in-row">
+      <h1>Welcome home <%= user.name %>!</h1>
+      <button class="btn ban-btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Ban User</button>
     </div>
+    <hr>
 
-    <button class="btn green-btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Change Picture</button>
-  </form>
+  	<form id="pictureForm" class="img-form" action="javascript:void(0);">
+    <h2>Change Profile Picture</h2>
+      <div class="form-group">
+          <input
+                type="url"
+                name="image"
+                required="true"
+                placeholder="Image Url..."
+                class="form-control user-input">
+      </div>
 
-  <!-- <button class="btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Ban User</button> -->
+      <button class="btn green-btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Change Picture</button>
+    </form>
 
-	<div class="container">
-	  <h2>Favorite Threads</h2>
-	  <table id="posts-table" class="table table-hover">
-	    <thead class="thead-light" data-events="postEvents">
-	      <th scope="col" data-field="id" data-visible="false">Id</th>
-	      <th scope="col" data-field="title" data-sortable="true">Title</th>
-	      <th scope="col" data-field="created" data-sortable="true">Created</th>
-	      <th scope="col" data-field="favorite" data-sortable="false" data-width=20px data-align='center' data-halign='center'></th>
-	    </thead>
-	    <tbody>
-	      <% if (typeof posts !== 'undefined') { %>
-	        <% posts.forEach(function(post) { %>
-	          <tr>
-	            <% if (post.favorite){ %>
-		            <td><%= post.id %></td>
-		            <td><%= post.title %></td>
-		            <td><%= post.date %></td>
-	              <td class="text-warning"><i class="fas fa-star"></i></td>
-	            <% } else{ %>
-	              <td class="text-secondary"><i class="far fa-star"></i></td>
-	            <% } %>
-	          </tr>
-	        <% }); %>
-	      <% } %>
-	    </tbody>
-	  </table>
-	</div>
+    <hr>
 
-<script>
-function getSelectedPost(id) {
-  window.location = "/post/" + id;
-}
+  	
+  	  <h2>Favorite Threads</h2>
+  	  <table id="posts-table" class="table table-hover">
+  	    <thead class="thead-light" data-events="postEvents">
+  	      <th scope="col" data-field="id" data-visible="false">Id</th>
+  	      <th scope="col" data-field="title" data-sortable="true">Title</th>
+  	      <th scope="col" data-field="created" data-sortable="true">Created</th>
+  	      <th scope="col" data-field="favorite" data-sortable="false" data-width=20px data-align='center' data-halign='center'></th>
+  	    </thead>
+  	    <tbody>
+  	      <% if (typeof posts !== 'undefined') { %>
+  	        <% posts.forEach(function(post) { %>
+  	          <tr>
+  	            <% if (post.favorite){ %>
+  		            <td><%= post.id %></td>
+  		            <td><%= post.title %></td>
+  		            <td><%= post.date %></td>
+  	              <td class="text-warning"><i class="fas fa-star"></i></td>
+  	            <% } else{ %>
+  	              <td class="text-secondary"><i class="far fa-star"></i></td>
+  	            <% } %>
+  	          </tr>
+  	        <% }); %>
+  	      <% } %>
+  	    </tbody>
+  	  </table>
+  	</div>
 
-function createPostsTable() {
-  var $table = $('#posts-table');
+  <script>
+  function getSelectedPost(id) {
+    window.location = "/post/" + id;
+  }
 
-  $table.on('click-row.bs.table', function (e, row, $element) {
-    getSelectedPost(row.id);
-  });
+  function createPostsTable() {
+    var $table = $('#posts-table');
 
-  $table.bootstrapTable({
-    toolbar: ".toolbar",
-    clickToSelect: false,
-    showRefresh: false,
-    search: false,
-    showToggle: false,
-    showColumns: false,
-    pagination: false,
-    searchAlign: 'right',
-    formatShowingRows: function(pageFrom, pageTo, totalRows){
-      //do nothing here, we don't want to show the text "showing x of y from..."
-    },
-    formatRecordsPerPage: function(pageNumber){
-      return pageNumber + " rows visible";
-    },
-    icons: {
-      refresh: 'fa fa-refresh',
-      toggle: 'fa fa-th-list',
-      columns: 'fa fa-columns',
-      detailOpen: 'fa fa-plus-circle',
-      detailClose: 'fa fa-minus-circle'
-    }
-  });
+    $table.on('click-row.bs.table', function (e, row, $element) {
+      getSelectedPost(row.id);
+    });
 
-  $(window).resize(function () {
-    $table.bootstrapTable('resetView');
-  });
-}
+    $table.bootstrapTable({
+      toolbar: ".toolbar",
+      clickToSelect: false,
+      showRefresh: false,
+      search: false,
+      showToggle: false,
+      showColumns: false,
+      pagination: false,
+      searchAlign: 'right',
+      formatShowingRows: function(pageFrom, pageTo, totalRows){
+        //do nothing here, we don't want to show the text "showing x of y from..."
+      },
+      formatRecordsPerPage: function(pageNumber){
+        return pageNumber + " rows visible";
+      },
+      icons: {
+        refresh: 'fa fa-refresh',
+        toggle: 'fa fa-th-list',
+        columns: 'fa fa-columns',
+        detailOpen: 'fa fa-plus-circle',
+        detailClose: 'fa fa-minus-circle'
+      }
+    });
 
-$().ready(createPostsTable());
+    $(window).resize(function () {
+      $table.bootstrapTable('resetView');
+    });
+  }
 
-</script>
+  $().ready(createPostsTable());
+
+  </script>
 
 
 
