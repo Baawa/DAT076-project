@@ -36,3 +36,32 @@ p {
     margin-right: 227px;
     margin-left: 150px;
 }
+
+.center{
+  text-align: center;
+}
+
+.darken {
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    );
+    image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    );
+}
+
+.white-font{
+  color: #fff;
+}
+
+.small-font{
+  font-size:100%;
+}
+
+.put-bot{
+  text-align:
+}
