@@ -27,7 +27,7 @@ const getUserView = (req, res, next) => {
 
 //Post
 const postLogin = (req, res, next) => {
-  res.cookie('x_access_token', req.token, { expires: new Date(Date.now() + (12*60*60*1000)), httpOnly: true, secure: false });
+  res.cookie('x_access_token', req.token, { expires: new Date(Date.now() + (60*60*1000)), httpOnly: true, secure: false });
   //req.session.access_token = req.token;
 
   res.status(200).send({'result':true});

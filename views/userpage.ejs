@@ -2,14 +2,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<% include partials/head %>
+  <% include partials/head %>
+  <% include partials/header %>
 	<link rel="stylesheet" type="text/css" href="<%= assetpath %>assets/css/user.css">
 
 
 </head>
 <body>
 
-	<% include partials/header %>
+	
   <div class="container">
 
     <div class="in-row">
@@ -20,7 +21,7 @@
           <input name="found_user_id" type="hidden" value="<%= found_user.id %>"/>
           <button class="btn ban-btn" onclick="postForm('#banForm', '/ban', '/')">Ban User</button>
         </form>
-        
+
       <% } %>
     </div>
     <hr>
@@ -117,4 +118,5 @@
 
 
 </body>
+<% include partials/footer %>
 </html>
