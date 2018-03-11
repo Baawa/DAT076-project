@@ -72,7 +72,7 @@
       <hr>
 
     <h2>Commented Threads</h2>
-      <table id="posts-table" class="table table-hover">
+      <table id="posts-table2" class="table table-hover">
         <thead class="thead-light" data-events="postEvents">
           <th scope="col" data-field="id" data-visible="false">Id</th>
           <th scope="col" data-field="title" data-sortable="true">Title</th>
@@ -83,16 +83,22 @@
           <% if (typeof posts !== 'undefined') { %>
             <% sub_posts.forEach(function(sub_posts) { %>
               <tr>
-                <% if (sub_posts.user_id == user.id && sub_posts.parent_id != null) { %>
+                <% if (sub_posts.user_id == found_user.id && sub_posts.parent_id != null) { %>
                   <% posts.forEach(function(post) { %>
                     <% if (sub_posts.parent_id == post.id) { %>
+                      <tr>
                       <td><%= post.id %></td>
                       <td><%= post.title %></td>
                       <td><%= post.date %></td>
+                      <% if (post.favorite){ %>
+                        <td class="text-warning"><i class="fas fa-star"></i></td>
+                      <% } else{ %>
+                        <td class="text-secondary"><i class="far fa-star"></i></td>
+                      <% } %>
+                    </tr>
                     <% } %>
                   <% }); %>
-                <% } %>
-
+                <% } %>          
             </tr>
           <% }); %>
         <% } %>
@@ -143,6 +149,45 @@
   }
 
   $().ready(createPostsTable());
+
+
+  function createPostsTable2() {
+    var $table = $('#posts-table2');
+
+    $table.on('click-row.bs.table', function (e, row, $element) {
+      getSelectedPost(row.id);
+    });
+
+    $table.bootstrapTable({
+      toolbar: ".toolbar",
+      clickToSelect: false,
+      showRefresh: false,
+      search: false,
+      showToggle: false,
+      showColumns: false,
+      pagination: false,
+      searchAlign: 'right',
+      formatShowingRows: function(pageFrom, pageTo, totalRows){
+        //do nothing here, we don't want to show the text "showing x of y from..."
+      },
+      formatRecordsPerPage: function(pageNumber){
+        return pageNumber + " rows visible";
+      },
+      icons: {
+        refresh: 'fa fa-refresh',
+        toggle: 'fa fa-th-list',
+        columns: 'fa fa-columns',
+        detailOpen: 'fa fa-plus-circle',
+        detailClose: 'fa fa-minus-circle'
+      }
+    });
+
+    $(window).resize(function () {
+      $table.bootstrapTable('resetView');
+    });
+  }
+
+  $().ready(createPostsTable2());
 
   </script>
 
