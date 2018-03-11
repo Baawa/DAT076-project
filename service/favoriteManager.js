@@ -94,9 +94,32 @@ var getFavoritesForUser = (req, res, next) => {
   });
 }
 
+var getFavoritesForFoundUser = (req, res, next) => {
+  Sql.query('SELECT * FROM favorites WHERE user_id=?;', [req.found_user.id],
+  function(error, results, fields) {
+    if (error) {
+      console.error(error);
+      res.status(400).send({'error':error});
+    } else {
+      var favs = [];
+
+      for (var i = 0; i < results.length; i++){
+        var fav = new Favorite(results[i]);
+        fav.id = results[i].id;
+
+        favs.push(fav);
+      }
+
+      req.favs = favs;
+      next();
+    }
+  });
+}
+
 module.exports = {
   add,
   remove,
   toggle,
-  getFavoritesForUser
+  getFavoritesForUser,
+  getFavoritesForFoundUser
 }

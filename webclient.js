@@ -22,7 +22,7 @@ const getThreadView = (req, res, next) => {
 }
 
 const getUserView = (req, res, next) => {
-  res.render('userpage', {assetpath:'../', user:req.user, posts:req.posts});
+  res.render('userpage', {assetpath:'../', found_user:req.found_user, user:req.user ,posts:req.posts});
 };
 
 //Post
