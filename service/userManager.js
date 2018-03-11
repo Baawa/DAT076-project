@@ -21,6 +21,21 @@ var register = (req, res, next) => {
   }
 };
 
+var createAdmin = (req, res, next) => {
+  var user = new User();
+  user.name = 'Admin';
+  user.banned = false;
+  user.admin = true;
+  user.password = '123';
+  user.create(function(error, u) {
+    if (error) {
+      res.status(400).send({'error':'Could not get user.'});
+    } else {
+      next();
+    }
+  });
+};
+
 var loadPic = (req, res, next) => {
   var user = new User(req.body);
   user.id = req.user.id;
@@ -91,6 +106,7 @@ var clearTokenCookie = (req, res, next) => {
   return false;
 }
 
+
 var getUser = (req, res, next) => {
   var user_id = req.user_id || req.body.user_id || req.params.user_id;
   var user = new User();
@@ -125,5 +141,6 @@ module.exports = {
   getUser,
   loadPic,
   ban,
-  updateUser
+  updateUser,
+  createAdmin
 }

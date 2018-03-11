@@ -140,6 +140,38 @@ class User {
     }
   }
 
+create(callback) {
+    console.log(this);
+    if (this.name.length > 0) {
+
+      if (typeof this.banned === 'undefined') {
+        this.banned = false; // Only when created
+      }
+      console.log('Will save user: ', this.name);
+      const auth = new Pasteurize(64, 256, 100000, 'sha512');
+      auth.hashPassword(this.password, (error, hash) => {
+        if (error) {
+          console.error(error);
+          callback('Could not save Admin.', null);
+        } else {
+          this.password = hash;
+          Sql.query('INSERT INTO users SET ?;', this, function (error, results, fields) {
+            if (error) {
+              console.error(error);
+              callback('Could not save Admin.', null);
+            } else {
+              console.log('Did save Admin: ', results.insertId);
+              callback(null, results.insertId);
+            }
+          });
+        }
+      });
+    } else {
+      console.error('Cannot save user without name.');
+      callback('Cannot save user without name.', null);
+    }
+  }
+
   banUser(callback) {
     
       if (this.id !== 'undefined') {

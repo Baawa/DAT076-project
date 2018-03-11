@@ -58,7 +58,7 @@ app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, st
 app.post('/post/lock', Auth, Posts.getPost, Posts.lockPost, standardResponse);
 
 //tablesetup
-app.get('/setup/', Table.deleteTables, Table.createTables, standardResponse);
+app.get('/setup/', Table.deleteTables, Table.createTables, Users.createAdmin, standardResponse);
 
 // Route not found - default to '/'
 app.get('*', Auth, function(req, res, next) {
