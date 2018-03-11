@@ -26,21 +26,23 @@
     </div>
     <hr>
 
-  	<form id="pictureForm" class="img-form" action="javascript:void(0);">
-    <h2>Change Profile Picture</h2>
-      <div class="form-group">
-          <input
-                type="url"
-                name="image"
-                required="true"
-                placeholder="Image Url..."
-                class="form-control user-input">
-      </div>
+    <% if (user.id == found_user.id){ %>
+      <form id="pictureForm" class="img-form" action="javascript:void(0);">
+      <h2>Change Profile Picture</h2>
+        <div class="form-group">
+            <input
+                  type="url"
+                  name="image"
+                  required="true"
+                  placeholder="Image Url..."
+                  class="form-control user-input">
+        </div>
 
-      <button class="btn green-btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Change Picture</button>
-    </form>
+        <button class="btn green-btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Change Picture</button>
+      </form>
 
-    <hr>
+      <hr>
+    <% } %>
 
 
   	  <h2>Favorite Threads</h2>
@@ -98,7 +100,7 @@
                     </tr>
                     <% } %>
                   <% }); %>
-                <% } %>          
+                <% } %>
             </tr>
           <% }); %>
         <% } %>

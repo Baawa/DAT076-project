@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
     <% include partials/head %>
-    <% include partials/header %>
   	<link rel="stylesheet" type="text/css" href="<%= assetpath %>assets/css/help.css">
     <meta name="helpPage" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -11,6 +10,8 @@
 
   </head>
   <body>
+    <% include partials/header %>
+
     <div class="container">
         <h2> Help! I don't know how to use or navigate through this website...<h2>
 
@@ -18,7 +19,7 @@
 
     </div>
 
-<div class="container ">
+<div class="container">
     <div class="panel-group" id="faqAccordion">
         <div class="panel panel-default ">
             <div class="collapsed panel-heading question-toggle accordion-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#firstQuestion">
