@@ -3,26 +3,9 @@
 <html lang="en">
   <head>
     <% include partials/head %>
-    <% include partials/header %>
-  	<link rel="stylesheet" type="text/css" href="<%= assetpath %>assets/css/help.css">
-    <!-- Bootstrap core CSS -->
-    <link href="<%= assetpath %>assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Fonts -->
-    <link href="<%= assetpath %>assets/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
-  	<!-- Core Bootstrap -->
-  	<script src="<%= assetpath %>assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-      <!-- main.js -->
-      <script src="<%= assetpath %>assets/js/main.js" type="text/javascript"></script>
-
-      <!-- jQuery -->
-      <script src="<%= assetpath %>assets/js/jquery.min.js" type="text/javascript"></script>
-
-
   </head>
   <body>
+    <% include partials/header %>
     <div class="container">
         <h2> Help! I don't know how to use or navigate through this website...<h2>
 
@@ -123,7 +106,7 @@ function sent() {
         y.appendChild(txt);
 }
 </script>
-
-  </body>
   <% include partials/footer %>
+  </body>
+
 </html>
