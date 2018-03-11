@@ -30,8 +30,13 @@ const getAboutView = (req, res, next) => {
 };
 
 const getHelpView = (req, res, next) => {
-  res.render('help', {assetpath:'../', user:req.user, found_user:req.found_user, posts:req.posts});
+  res.render('help', {assetpath:'../', user:req.user});
 };
+
+const getLogoutView = (req, res, next) => {
+  res.clearCookie('x_access_token');
+  res.render('login', {assetpath:'../'});
+}
 
 //Post
 const postLogin = (req, res, next) => {
@@ -50,5 +55,6 @@ module.exports = {
   getUserView,
   getAboutView,
   postLogin,
+  getLogoutView,
   getHelpView
 }
