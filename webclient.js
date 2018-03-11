@@ -33,11 +33,6 @@ const getHelpView = (req, res, next) => {
   res.render('help', {assetpath:'../', user:req.user});
 };
 
-const getLogoutView = (req, res, next) => {
-  res.clearCookie('x_access_token');
-  res.render('login', {assetpath:'../'});
-}
-
 //Post
 const postLogin = (req, res, next) => {
   res.cookie('x_access_token', req.token, { expires: new Date(Date.now() + (60*60*1000)), httpOnly: true, secure: false });
@@ -55,6 +50,5 @@ module.exports = {
   getUserView,
   getAboutView,
   postLogin,
-  getLogoutView,
   getHelpView
 }
