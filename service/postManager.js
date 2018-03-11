@@ -84,13 +84,25 @@ var increaseFavorite = (req, res, next) => {
         var post = new Post(p);
         post.id = p.id;
 
-        post.updateFavoriteNumber(function(error, post){
+        console.log("mautma " + req.body.decrease);
+
+        if (req.body.decrease == "1" ) { 
+          post.decreaseFavoriteNumber(function(error, post){
           if (error) {
             res.status(400).send({'error':'Could not update post.'});
           } else {
             next();
           }
-        });
+          });
+        } else {
+          post.updateFavoriteNumber(function(error, post){
+            if (error) {
+              res.status(400).send({'error':'Could not update post.'});
+            } else {
+              next();
+            }
+          });
+        }
       }
     });
   } else{

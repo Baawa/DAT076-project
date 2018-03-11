@@ -89,6 +89,23 @@ class Post {
     }
   }
 
+decreaseFavoriteNumber(callback) {
+    if (this.title.length > 0) {
+      Sql.query('UPDATE posts SET number_of_favorite = number_of_favorite -1 WHERE id = ?', this.id, function (error, results, fields) {
+        if (error) {
+          console.error(error);
+          callback('Could not update number of favorites.', null);
+        } else {
+          console.log('Did update post favorite number: ', results.insertId);
+          callback(null, results.insertId);
+        }
+      });
+    } else {
+      console.error('Cannot save user without post.');
+      callback('Cannot save user without post.', null);
+    }
+  }
+
   update(callback){
     if (typeof this.id !== 'undefined'){
       Sql.query('UPDATE posts SET ? WHERE id = ?;', [this, this.id], function (error, results, fields) {

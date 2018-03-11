@@ -23,7 +23,9 @@
 			<form id="starForm" action="javascript:void(0);">
 				<input name="post_id" type="hidden" value="<%= post.id %>"/>
 
+
 				<% if (post.favorite){ %>
+					<input name="decrease" type="hidden" value="1"/>
 					<button class="btn btn-warning" data-toggle="tooltip" title="Unfavorite" onclick="postForm('#starForm', '/favorite/', '/post/<%= post.id %>')">
 						<i class="fas fa-star"></i>
 					</button>
