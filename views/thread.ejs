@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 	<% include partials/head %>
+	<link rel="stylesheet" type="text/css" href="<%= assetpath %>assets/css/threads.css">
 </head>
 <body>
 	<% include partials/header %>
@@ -43,11 +44,11 @@
 			<% } %>
 	  </div>
 
-		<h4>Comments</h4>
+		<h4 class="border-bottom border-dark">Comments</h4>
 		<ul>
 			<% if (typeof sub_posts !== 'undefined') { %>
 				<% sub_posts.forEach(function(spost) { %>
-					<li>
+					<li class="thread-lightgray">
 						<h2><%= spost.title %></h2>
 				    <p><%= spost.text %></p>
 						<p><%= spost.date %></p>
