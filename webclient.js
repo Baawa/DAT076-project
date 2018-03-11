@@ -22,11 +22,11 @@ const getThreadView = (req, res, next) => {
 }
 
 const getUserView = (req, res, next) => {
-  res.render('userpage', {assetpath:'../', found_user:req.found_user, user:req.user ,posts:req.posts});
+  res.render('userpage', {assetpath:'../', found_user:req.found_user, user:req.user ,posts:req.posts, sub_posts:req.sub_posts});
 };
 
 const getAboutView = (req, res, next) => {
-  res.render('about', {assetpath:'../', user:req.user, posts:req.posts});
+  res.render('about', {assetpath:'../', user:req.user, found_user:req.found_user, posts:req.posts});
 };
 
 const getHelpView = (req, res, next) => {

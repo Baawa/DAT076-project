@@ -38,12 +38,13 @@ const standardResponse = (req, res, next) => {
 };
 
 app.get('/', Auth, Favorites.getFavoritesForUser, Posts.getThreads, Webclient.getStartView);
+app.get('/about/:user_id', Auth, Users.getUser, Webclient.getAboutView);
 app.get('/login', Webclient.getLoginView);
 app.get('/register', Webclient.getRegisterView);
 app.get('/post/new', Auth, Webclient.getNewPostView);
 app.get('/post/:post_id', Auth, Favorites.getFavoritesForUser, Posts.getPost, Posts.getSubPosts, Webclient.getThreadView);
-app.get('/userpage/:user_id', Auth, Users.getUser, Favorites.getFavoritesForFoundUser, Posts.getThreads, Webclient.getUserView);
-app.get('/logout', Users.clearTokenCookie, Webclient.getLoginView);
+app.get('/userpage/:user_id', Auth, Users.getUser, Favorites.getFavoritesForFoundUser, Posts.getThreads, Posts.getAllSubPosts, Webclient.getUserView);
+app.get('/logout', Auth, Users.clearTokenCookie, Webclient.getLoginView);
 app.get('/about', Auth, Users.getUser, Webclient.getAboutView);
 app.get('/help/:user_id', Auth, Users.getUser, Webclient.getHelpView);
 

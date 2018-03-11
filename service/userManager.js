@@ -99,8 +99,8 @@ var logout = (req, res, next) => {
 };
 
 var clearTokenCookie = (req, res, next) => {
-  if (req.cookies['x_access-token']) {
-    res.clearCookie('x_access-token');
+  if (req.cookies['x_access_token']) {
+    res.clearCookie('x_access_token');
     return true;
   }
   return false;
