@@ -14,12 +14,8 @@
 			<p><%= post.date %></p>
 
 			<div class="d-flex flex-row justify-content-start align-items-center">
-		    <div><a id="name-<%= post.id %>" href="/userpage/<%= post.user_id %>" style="height: 1rem;"></a></div>
-				<% if (user.image==null){ %>
-					<img src="<%= assetpath %>assets/images/kappa.png" class="ml-1 bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="Default"/>
-				<%} else { %>
-					<img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="User's Pic"/>
-				<% } %>
+				<div><a id="name-<%= post.id %>" href="/userpage/<%= post.user_id %>" style="height: 1rem;"></a></div>
+				<img id="image-<%= post.id %>" src="" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
 		  </div>
 
 			<form id="starForm" action="javascript:void(0);">
@@ -56,12 +52,8 @@
 						<p><%= spost.date %></p>
 
 						<div class="d-flex flex-row justify-content-start align-items-center">
-					    <div><a id="name-<%= spost.id %>" href="/userpage/<%= spost.user_id %>" style="height: 1rem;"></a></div>
-							<% if (user.image==null){ %>
-								<img src="<%= assetpath %>assets/images/kappa.png" class="ml-1 bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="Default"/>
-							<%} else { %>
-								<img src="<%= user.image %>" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;" alt="User's Pic"/>
-							<% } %>
+							<div><a id="name-<%= spost.id %>" href="/userpage/<%= spost.user_id %>" style="height: 1rem;"></a></div>
+					    <img id="image-<%= spost.id %>" src="" class="bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
 					  </div>
 					</li>
 				<% }); %>
@@ -82,19 +74,10 @@
 										required></textarea>
 		    </div>
 
-		    <button class="btn-light" onclick="postForm('#commentForm', '/post/new', '/post/<%= post.id %>')">Add comment</button>
+		    <button class="btn btn-light" onclick="postForm('#commentForm', '/post/new', '/post/<%= post.id %>')">Add comment</button>
 		  </form>
 		<% } %>
 	</div>
-
-  <div>
-		<div class="p-3 mb-2 bg-primary text-white">
-    <h2><%= post.title %></h2>
-	</div>
-		<div class="container" colour>
-    <p><%= post.text %></p>
-		</div>
-  </div>
 
 </body>
 <script>
@@ -102,7 +85,11 @@
 function getUserInfo(id, name_id, image_id){
 	get('/user/' + id, [], function(data){
 		$('#' + name_id).html(data.user.name);
-		$('#' + image_id).attr('src', data.user.image);
+		if (data.user.image == null || data.user.image == "") {
+			$('#' + image_id).attr('src', "<%= assetpath %>assets/images/kappa.png");
+		} else{
+			$('#' + image_id).attr('src', data.user.image);
+		}
 	}, function(error){
 		console.log(error);
 	});
