@@ -57,7 +57,7 @@ var loadPic = (req, res, next) => {
 
 var ban = (req, res, next) => {
   var user = new User(req.body);
-  user.id = req.user.id;
+  user.id = req.body.found_user_id;
   user.banned = true;
 
   if (typeof user.id !== 'undefined') {

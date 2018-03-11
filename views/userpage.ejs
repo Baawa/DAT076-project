@@ -14,7 +14,14 @@
 
     <div class="in-row">
       <h1>Welcome home <%= found_user.name %>!</h1>
-      <button class="btn ban-btn" onclick="postForm('#pictureForm', '/userpage', '/userpage')">Ban User</button>
+      <% if (user.admin && !found_user.admin) { %>
+
+        <form id="banForm" action="javascript:void(0);">
+          <input name="found_user_id" type="hidden" value="<%= found_user.id %>"/>
+          <button class="btn ban-btn" onclick="postForm('#banForm', '/ban', '/')">Ban User</button>
+        </form>
+        
+      <% } %>
     </div>
     <hr>
 

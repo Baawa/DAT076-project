@@ -52,7 +52,7 @@ app.get('/user/:user_id', Auth, Users.getUser, function(req, res, next){
 app.post('/login', Users.login, Webclient.postLogin);
 app.post('/register', Users.register, standardResponse);
 app.post('/userpage', Auth, Users.loadPic, standardResponse);
-//app.post('/userpage', Auth, Users.ban, standardResponse);
+app.post('/ban', Auth, Users.ban, standardResponse);
 app.post('/post/new', Auth, Posts.create, standardResponse);
 app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, standardResponse);
 app.post('/post/lock', Auth, Posts.getPost, Posts.lockPost, standardResponse);

@@ -187,8 +187,6 @@ create(callback) {
     }
   }
     
-  
-
   update(callback) {
     // Remove properties that should not be updated
     delete this.password;

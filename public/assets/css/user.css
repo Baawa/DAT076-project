@@ -4,7 +4,6 @@
 	justify-content: space-between;
 }
 
-
 .green-btn {
 	background-color: #fff;
 	color: #2ECC71;
@@ -18,8 +17,7 @@
 }
 
 .user-input {
-	width: 100%;
-	
+	width: 100%;	
 }
 
 .ban-btn {
