@@ -1,0 +1,31 @@
+.first-text {
+	display: flex;
+	flex-direction : row;
+	justify-content: center;
+}
+
+#about-text {
+	font-size: 20px;
+	width: 50%;
+}
+
+.insp-pic {
+	width: 300px;
+	height: 400px;
+	border-radius: 6px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 0;
+}
+
+#about-us-text {
+	font-size: 20px;
+	width: 50%;
+}

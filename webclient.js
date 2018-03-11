@@ -26,7 +26,7 @@ const getUserView = (req, res, next) => {
 };
 
 const getAboutView = (req, res, next) => {
-  res.render('about', {assetpath:'../', user:req.user, posts:req.posts});
+  res.render('about', {assetpath:'../', user:req.user, found_user:req.found_user, posts:req.posts});
 };
 
 //Post
