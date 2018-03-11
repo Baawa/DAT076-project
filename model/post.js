@@ -30,7 +30,7 @@ class Post {
     this.text = data.text || null;
     this.date = data.date || null;
     this.locked = data.locked || false;
-    this.number_of_favorite = 0;
+    this.number_of_favorite = data.number_of_favorite || 0;
   }
 
   get(callback) {

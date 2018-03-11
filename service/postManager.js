@@ -70,38 +70,32 @@ var getPost = (req, res, next) => {
 };
 
 var increaseFavorite = (req, res, next) => {
-  if (typeof req.body.post_id !== 'undefined') {
-    
-    Sql.query('SELECT * FROM posts WHERE id=?;', [req.body.post_id],
-      function(error, results, fields) {
-        if (error) {
-          console.error(error);
-          res.status(400).send({'error':error});
-        } else {
+  var post_id = req.post_id || req.params.post_id || req.body.post_id;
 
-      for (var i = 0; i < results.length; i++){
-        var post = new Post(results[i]);
-        post.id = results[i].id;
+  if (typeof post_id !== 'undefined') {
+
+    var post = new Post();
+    post.id = post_id;
+
+    post.get(function(error, p) {
+      if (error) {
+        res.status(400).send({'error':'Could not get post.'});
+      } else {
+        var post = new Post(p);
+        post.id = p.id;
 
         post.updateFavoriteNumber(function(error, post){
           if (error) {
-            res.status(400).send({'error':'Could not create post.'});
+            res.status(400).send({'error':'Could not update post.'});
           } else {
             next();
           }
         });
-        
       }
-
-      next();
-    }
-  });
-
-
-    
+    });
+  } else{
+    res.status(400).send({'error':'No post id.'});
   }
-  console.log("KOMINTERÄTT");
-  next();
 };
 
 var getSubPosts = (req, res, next) => {
