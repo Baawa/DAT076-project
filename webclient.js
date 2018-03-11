@@ -29,6 +29,10 @@ const getAboutView = (req, res, next) => {
   res.render('about', {assetpath:'../', user:req.user, posts:req.posts});
 };
 
+const getHelpView = (req, res, next) => {
+  res.render('help', {assetpath:'../', user:req.user, found_user:req.found_user, posts:req.posts});
+};
+
 //Post
 const postLogin = (req, res, next) => {
   res.cookie('x_access_token', req.token, { expires: new Date(Date.now() + (60*60*1000)), httpOnly: true, secure: false });
@@ -45,5 +49,6 @@ module.exports = {
   getThreadView,
   getUserView,
   getAboutView,
-  postLogin
+  postLogin,
+  getHelpView
 }

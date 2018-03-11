@@ -1,0 +1,28 @@
+p {
+  color: #685206;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  line-height: 24px;
+  margin: 0 0 24px;
+  text-align: justify;
+  text-justify:
+  inter-word;
+}
+
+.inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}
+
+.ex1 {
+  margin: 10px;
+}
+
+.border-wavy {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+}
+
+.dotted {
+  border-style: dotted;
+}

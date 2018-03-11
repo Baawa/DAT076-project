@@ -14,6 +14,7 @@
         <div class="d-flex flex-row justify-content-start align-items-center">
         <a href="/" class="mr-1 btn btn-outline-primary " >Threads</a>
         <a href="/about" class="mr-1 btn btn-outline-primary " >About</a>
+        <a href="/help/<%= user.id %>" class="mr-1 btn btn-outline-primary " >Help</a>
           <div><a href="/userpage/<%= user.id %>" class="btn btn-outline-secondary" ><%= user.name %></a></div>
           <% if (user.image==null){ %>
             <img src="<%= assetpath %>assets/images/kappa.png" class="ml-1 bg-secondary rounded-circle" style="height: 30px; width: 30px;"/>
