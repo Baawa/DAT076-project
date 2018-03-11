@@ -15,7 +15,7 @@ class SqlTable {
     this.columns = [];
   }
 
-  // Parameter "column" must be AFSqlColumn
+  // Parameter "column" must be DATSqlColumn
   addColumn(column) {
     this.columns.push(column.statement);
   }
