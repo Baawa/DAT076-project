@@ -68,7 +68,38 @@
   	      <% } %>
   	    </tbody>
   	  </table>
-  	</div>
+
+      <hr>
+
+    <h2>Commented Threads</h2>
+      <table id="posts-table" class="table table-hover">
+        <thead class="thead-light" data-events="postEvents">
+          <th scope="col" data-field="id" data-visible="false">Id</th>
+          <th scope="col" data-field="title" data-sortable="true">Title</th>
+          <th scope="col" data-field="created" data-sortable="true" data-width=160px>Created</th>
+          <th scope="col" data-field="favorite" data-sortable="false" data-width=20px data-align='center' data-halign='center'></th>
+        </thead>
+        <tbody>
+          <% if (typeof posts !== 'undefined') { %>
+            <% sub_posts.forEach(function(sub_posts) { %>
+              <tr>
+                <% if (sub_posts.user_id == user.id && sub_posts.parent_id != null) { %>
+                  <% posts.forEach(function(post) { %>
+                    <% if (sub_posts.parent_id == post.id) { %>
+                      <td><%= post.id %></td>
+                      <td><%= post.title %></td>
+                      <td><%= post.date %></td>
+                    <% } %>
+                  <% }); %>
+                <% } %>
+              
+            </tr>
+          <% }); %>
+        <% } %>
+      </tbody>
+    </table>
+
+  </div>
 
   <script>
   function getSelectedPost(id) {

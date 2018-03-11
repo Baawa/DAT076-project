@@ -93,6 +93,28 @@ var getSubPosts = (req, res, next) => {
   });
 };
 
+var getAllSubPosts = (req, res, next) => {
+  Sql.query('SELECT * FROM posts;', [],
+  function(error, results, fields) {
+    if (error) {
+      console.error(error);
+      res.status(400).send({'error':error});
+    } else {
+      var posts = [];
+
+      for (var i = 0; i < results.length; i++){
+        var post = new Post(results[i]);
+        post.id = results[i].id;
+
+        posts.push(post);
+      }
+
+      req.sub_posts = posts;
+      next();
+    }
+  });
+};
+
 var getThreads = (req, res, next) => {
   Sql.query('SELECT * FROM posts WHERE parent_id IS NULL;', [],
   function(error, results, fields) {
@@ -130,5 +152,6 @@ module.exports = {
   lockPost,
   getPost,
   getSubPosts,
-  getThreads
+  getThreads,
+  getAllSubPosts
 }
