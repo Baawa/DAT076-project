@@ -84,8 +84,6 @@ var increaseFavorite = (req, res, next) => {
         var post = new Post(p);
         post.id = p.id;
 
-        console.log("mautma " + req.body.decrease);
-
         if (req.body.decrease == "1" ) { 
           post.decreaseFavoriteNumber(function(error, post){
           if (error) {
