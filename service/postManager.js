@@ -69,6 +69,41 @@ var getPost = (req, res, next) => {
   });
 };
 
+var increaseFavorite = (req, res, next) => {
+  if (typeof req.body.post_id !== 'undefined') {
+    
+    Sql.query('SELECT * FROM posts WHERE id=?;', [req.body.post_id],
+      function(error, results, fields) {
+        if (error) {
+          console.error(error);
+          res.status(400).send({'error':error});
+        } else {
+
+      for (var i = 0; i < results.length; i++){
+        var post = new Post(results[i]);
+        post.id = results[i].id;
+
+        post.updateFavoriteNumber(function(error, post){
+          if (error) {
+            res.status(400).send({'error':'Could not create post.'});
+          } else {
+            next();
+          }
+        });
+        
+      }
+
+      next();
+    }
+  });
+
+
+    
+  }
+  console.log("KOMINTERÄTT");
+  next();
+};
+
 var getSubPosts = (req, res, next) => {
   var post_id = req.post.id || req.post_id;
 
@@ -133,6 +168,8 @@ var getThreads = (req, res, next) => {
           for (var j = 0; j < req.favs.length; j++){
             if (req.favs[j].post_id == post.id){
               post.favorite = true;
+              post.number_of_favorite++;
+              console.log(post.number_of_favorite);
               break;
             }
           }
@@ -153,5 +190,6 @@ module.exports = {
   getPost,
   getSubPosts,
   getThreads,
-  getAllSubPosts
+  getAllSubPosts,
+  increaseFavorite
 }

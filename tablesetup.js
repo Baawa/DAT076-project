@@ -28,6 +28,7 @@ const createTables = (req, res, next) => {
   table.addColumn(new Column('text', null, null));
   table.addColumn(new Column('date', null, null));
   table.addColumn(new Column('locked', Column.Type.BOOL, Column.Property.NOT_NULL));
+  table.addColumn(new Column('number_of_favorite', Column.Type.INT, null));
   table.save(null);
 
   table.setTableName('favorites');

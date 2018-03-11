@@ -61,7 +61,7 @@ app.post('/register', Users.register, standardResponse);
 app.post('/userpage', Auth, Users.loadPic, standardResponse);
 app.post('/ban', Auth, Users.ban, standardResponse);
 app.post('/post/new', Auth, Posts.create, standardResponse);
-app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, standardResponse);
+app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, Posts.increaseFavorite, standardResponse);
 app.post('/post/lock', Auth, Posts.getPost, Posts.lockPost, standardResponse);
 
 //tablesetup

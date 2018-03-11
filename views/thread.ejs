@@ -27,10 +27,12 @@
 					<button class="btn btn-warning" data-toggle="tooltip" title="Unfavorite" onclick="postForm('#starForm', '/favorite/', '/post/<%= post.id %>')">
 						<i class="fas fa-star"></i>
 					</button>
+					<%= post.number_of_favorite %>
 				<% } else{ %>
 					<button class="btn btn-secondary" data-toggle="tooltip" title="Favorite" onclick="postForm('#starForm', '/favorite/', '/post/<%= post.id %>')">
 						<i class="far fa-star"></i>
 					</button>
+					<%= post.number_of_favorite %>
 				<% } %>
 			</form>
 
