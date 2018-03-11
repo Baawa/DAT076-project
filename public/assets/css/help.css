@@ -14,10 +14,6 @@ p {
    cursor: default;
 }
 
-.ex1 {
-  margin: 10px;
-}
-
 .border-wavy {
     text-decoration-line: underline;
     text-decoration-style: wavy;
@@ -25,4 +21,18 @@ p {
 
 .dotted {
   border-style: dotted;
+}
+
+.normal-margins{
+  margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 227px;
+    margin-left: 75px;
+}
+
+.normal-margins2{
+  margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 227px;
+    margin-left: 150px;
 }

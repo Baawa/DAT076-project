@@ -4,8 +4,10 @@
 			<hr class="gray-line">
 			<ul class="footer-list">
 			  <li><a href="/thread">Threads</a></li>
-			  <li><a href="/logout">Log out</a></li>
+				<li><a href="/about/<%= user.id %>">About</a></li>
+				<li><a href="/help/<%= user.id %>">Help</a></li>
 			  <li><a href="/userpage/<%= user.id %>"><%= user.name %></a></li>
-			</ul>  
+				<li><a href="/logout">Log out</a></li>
+			</ul>
 		</div>
 	</footer>
