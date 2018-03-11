@@ -30,6 +30,7 @@ class Post {
     this.text = data.text || null;
     this.date = data.date || null;
     this.locked = data.locked || false;
+    this.number_of_favorite = data.number_of_favorite || 0;
   }
 
   get(callback) {
@@ -62,6 +63,40 @@ class Post {
           callback('Could not save post.', null);
         } else {
           console.log('Did save post: ', results.insertId);
+          callback(null, results.insertId);
+        }
+      });
+    } else {
+      console.error('Cannot save user without post.');
+      callback('Cannot save user without post.', null);
+    }
+  }
+
+  updateFavoriteNumber(callback) {
+    if (this.title.length > 0) {
+      Sql.query('UPDATE posts SET number_of_favorite = number_of_favorite +1 WHERE id = ?', this.id, function (error, results, fields) {
+        if (error) {
+          console.error(error);
+          callback('Could not update number of favorites.', null);
+        } else {
+          console.log('Did update post favorite number: ', results.insertId);
+          callback(null, results.insertId);
+        }
+      });
+    } else {
+      console.error('Cannot save user without post.');
+      callback('Cannot save user without post.', null);
+    }
+  }
+
+decreaseFavoriteNumber(callback) {
+    if (this.title.length > 0) {
+      Sql.query('UPDATE posts SET number_of_favorite = number_of_favorite -1 WHERE id = ?', this.id, function (error, results, fields) {
+        if (error) {
+          console.error(error);
+          callback('Could not update number of favorites.', null);
+        } else {
+          console.log('Did update post favorite number: ', results.insertId);
           callback(null, results.insertId);
         }
       });

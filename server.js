@@ -58,10 +58,13 @@ app.get('/user/:user_id', Auth, Users.getUser, function(req, res, next){
 //Post-requests
 app.post('/login', Users.login, Webclient.postLogin);
 app.post('/register', Users.register, standardResponse);
-app.post('/userpage', Auth, Users.loadPic, standardResponse);
+app.post('/userpage', Auth, Users.loadPic, Users.login, function(req, res, next){
+	res.clearCookie('x_access_token');
+	res.cookie('x_access_token', req.token, { expires: new Date(Date.now() + (60*60*1000)), httpOnly: true, secure: false });
+}, Auth, standardResponse);
 app.post('/ban', Auth, Users.ban, standardResponse);
 app.post('/post/new', Auth, Posts.create, standardResponse);
-app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, standardResponse);
+app.post('/favorite/', Auth, Favorites.getFavoritesForUser, Favorites.toggle, Posts.increaseFavorite, standardResponse);
 app.post('/post/lock', Auth, Posts.getPost, Posts.lockPost, standardResponse);
 
 //tablesetup

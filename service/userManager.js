@@ -46,7 +46,7 @@ var loadPic = (req, res, next) => {
       if (error) {
         res.status(400).send({'error':'Could not upload picture.'});
       } else {
-        req.user.image = user.image;
+        //req.token = jwt.sign(user, config.app.accessKey);
         next();
       }
     });
