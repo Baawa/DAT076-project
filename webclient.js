@@ -25,6 +25,10 @@ const getUserView = (req, res, next) => {
   res.render('userpage', {assetpath:'../', found_user:req.found_user, user:req.user ,posts:req.posts});
 };
 
+const getAboutView = (req, res, next) => {
+  res.render('about', {assetpath:'../', user:req.user, posts:req.posts});
+};
+
 //Post
 const postLogin = (req, res, next) => {
   res.cookie('x_access_token', req.token, { expires: new Date(Date.now() + (60*60*1000)), httpOnly: true, secure: false });
@@ -40,5 +44,6 @@ module.exports = {
   getNewPostView,
   getThreadView,
   getUserView,
+  getAboutView,
   postLogin
 }
