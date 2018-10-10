@@ -6,7 +6,7 @@ Det ska bli ett forum 👍
 ## Contact information
 Baawa - Albin Bååw - baawa@student.chalmers.se
 Pedshi - Pedram Shirmohammad - pedshi@student.chalmers.se
-shaoshaotimetime - Eric Shao - ericjieyinshao@gmail.com
+shaotime - Eric Shao - ericsh@student.chalmers.se
 
 Use Cases:
 -Login as user/admin
